@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="CountToJob" Id="{ed82a04e-7602-40f3-be4b-fa2713f6fd57}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CountToJob EXTENDS Job
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_nCounter: USINT;
+	_nCountTo: USINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="CountTo" Id="{da3c9f62-e9f4-4e95-b663-cefe7095d757}">
+      <Declaration><![CDATA[PROPERTY CountTo : USINT]]></Declaration>
+      <Get Name="Get" Id="{c8aba6a8-7048-4e1c-ae5b-5900a158522c}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_nCountTo := CountTo;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{8003cf11-2b0d-4147-bdd8-0d1bbba164fc}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF State = JobState.Idle THEN
+	_nCountTo := CountTo;
+END_IF]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="OnRun" Id="{9cd8f8e1-2d5e-4349-9f8c-55cfaeeebc5c}">
+      <Declaration><![CDATA[(*
+Executed when this job is run.  
+*)
+METHOD PROTECTED OnRun
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_nCounter := _nCOunter + 1;
+IF _nCounter >= _nCountTo THEN
+	Done();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnStart" Id="{ad180122-f44f-45b1-8477-0eb7d514d42e}">
+      <Declaration><![CDATA[(*
+Executed when this job is started.  
+*)
+METHOD PROTECTED OnStart
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_nCounter := 0;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

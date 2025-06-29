@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MyWorker" Id="{f9b70b6f-0f98-480e-811a-e71080a78641}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MyWorker IMPLEMENTS I_Execute
+VAR
+	_exe: Execute(THIS^);
+	_worker: LoopWorker;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Base" Id="{e952360f-dfef-4fb8-a452-eb5e523b0fe0}">
+      <Declaration><![CDATA[PROPERTY Base : I_Worker]]></Declaration>
+      <Get Name="Get" Id="{b34ebdeb-e502-40f5-bc1b-850082b5dba9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Base := _worker.Base;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Execute" Id="{dcb0a034-e58a-4195-b0bf-d3704a369b16}">
+      <Declaration><![CDATA[(*
+If registered, this method will be executed cyclically.
+*)
+METHOD Execute
+VAR_INPUT
+	nPhase	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_worker.Run();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

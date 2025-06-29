@@ -18,6 +18,20 @@
     <LibraryReferences>{465fd801-fcfe-4c0e-8796-d3c36aaafd16}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Jobs\CountToJob.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Jobs\JobsExample.TcPOU">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Jobs\MyWorker.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Jobs\SharedWorker.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -27,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MAIN" />
+    <Folder Include="Jobs" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">
@@ -41,6 +56,14 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
       <SystemLibrary>true</SystemLibrary>
+    </PlaceholderReference>
+    <PlaceholderReference Include="_StageCore">
+      <DefaultResolution>StageCore, * (_)</DefaultResolution>
+      <Namespace>StageCore</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="_StageUtils">
+      <DefaultResolution>StageUtils, * (_)</DefaultResolution>
+      <Namespace>StageUtils</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
