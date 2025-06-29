@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{7d938202-0cae-4cfb-8464-1fb9a56bdf35}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	// Broadcast tests
+	// Use only one Broadcast test at the time!
+	{define broadcast_test '01'} 
+	{IF hasvalue (broadcast_test, '01')}
+		broadcast_test		: Test_Broadcast_FillAndCoalesce;
+	{ELSE}
+		broadcast_test		: Test_Broadcast_FillAndMove;
+	{END_IF}
+	
+	// Tags tests
+	tags_test_01			: Test_Tags_WildcardCmp;
+
+	debugInfo				: DebugInfo;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Runtime();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
