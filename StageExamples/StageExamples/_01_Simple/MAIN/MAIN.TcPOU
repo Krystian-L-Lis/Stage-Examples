@@ -8,7 +8,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[Runtime();
 
-JobsExample();]]></ST>
+JobsExample();
+StatesExample();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

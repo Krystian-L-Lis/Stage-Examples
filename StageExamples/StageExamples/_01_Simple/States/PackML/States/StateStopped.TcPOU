@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateStopped" Id="{b343d65a-1954-4784-ab8c-bc777029e893}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateStopped EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="OnEntry" Id="{2e0d77e7-d0e1-43e6-b554-5984a044db4e}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.sHmiStatusText := 'Stopped...';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateComplete" Id="{70ec6bcf-c012-4c5a-89e2-79b9d732c811}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateComplete EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CanActivate" Id="{8c4689e7-3c91-4b2f-b68a-97b784123f6e}">
+      <Declaration><![CDATA[(*
+Determines whether the state can be activated.  
+Returns `TRUE` by default but can be overridden for specific activation conditions.
+*)
+METHOD PROTECTED CanActivate : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CanActivate := _ctx.smgr.Current.Tag = _ctx.execute.Tag;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnEntry" Id="{f6cbc5dc-51f2-45cd-b81a-a21762d47304}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.sHmiStatusText := 'Complete: Next task please!';]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{7b2f82b6-413f-44f8-a5cf-8013e51628f4}">
+      <Declaration><![CDATA[(*
+Executed during the state's operation.  
+Used to define state-specific logic that runs while the state is active.
+*)
+METHOD PROTECTED OnExecute
+VAR
+	strb: Strb;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _ctx.bHmiAcknowledge THEN	
+	_ctx.smgr.Request(_ctx.idle);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

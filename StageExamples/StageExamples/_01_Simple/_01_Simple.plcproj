@@ -28,20 +28,53 @@
     <Compile Include="Jobs\MyWorker.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Jobs\SharedWorker.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="MAIN\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="States\PackML\StateContext.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateAborted.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateComplete.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateExecute.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateHeld.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateIdle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateStopped.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\StateSuspended.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\PackML\States\_AbstractState.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\ExampleStateMachine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="States\StatesExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MAIN" />
     <Folder Include="Jobs" />
+    <Folder Include="States" />
+    <Folder Include="States\PackML" />
+    <Folder Include="States\PackML\States" />
+    <Folder Include="States\PackML\States\Aborted" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">
@@ -51,6 +84,10 @@
     <PlaceholderReference Include="Tc2_System">
       <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Utilities">
+      <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Utilities</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

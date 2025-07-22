@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateExecute" Id="{ae7ec636-077b-41b6-ad57-77d3ed6c6fac}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateExecute EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_ton: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CanActivate" Id="{e6a71763-a9d1-4b60-80dd-831c9ef273ca}">
+      <Declaration><![CDATA[(*
+Determines whether the state can be activated.  
+Returns `TRUE` by default but can be overridden for specific activation conditions.
+*)
+METHOD PROTECTED CanActivate : BOOL
+VAR
+	cmp: TagCmp;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CanActivate := cmp.Set(_ctx.smgr.Current.Tag)
+					.Match(_ctx.idle.Tag)
+					.Match(_ctx.suspended.Tag)
+					.Match(_ctx.held.Tag)
+					.IsTrue();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnEntry" Id="{fc921459-7c21-4275-b1c0-bca3fe6c9a97}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ton(IN := FALSE);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{79f77e7a-26e9-49a4-a620-c0f7a846ab8b}">
+      <Declaration><![CDATA[(*
+Executed during the state's operation.  
+Used to define state-specific logic that runs while the state is active.
+*)
+METHOD PROTECTED OnExecute
+VAR
+	strb: Strb;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ton(IN := TRUE, PT := T#3S);
+_ctx.rLevel := _ctx.rLevel - 1;
+IF _ctx.rLevel <= 0 THEN
+	_ctx.smgr.Request(_ctx.complete);
+ELSIF _ton.Q THEN
+	_ctx.smgr.Request(_ctx.held);
+END_IF
+
+_ctx.sHmiStatusText :=
+	strb.Set('Execute: Emptying - Remaining level: ')
+		.Append(Strf.Fmt('%.0f', F_LREAL(_ctx.rLevel)))
+		.Read();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

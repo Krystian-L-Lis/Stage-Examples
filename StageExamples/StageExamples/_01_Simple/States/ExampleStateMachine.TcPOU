@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="ExampleStateMachine" Id="{b416ac77-f9e5-448c-ae6b-3718da90eacf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ExampleStateMachine IMPLEMENTS I_Init, I_Execute;
+VAR
+	
+	_init: Init(THIS^);
+
+	_ett: EntityStart;
+		_ctx: StateContext;
+	_ettEnd: EntityEnd;
+	
+	_post_exe: Execute(THIS^);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Entity" Id="{c30f16a9-26cd-47a8-89ce-c647c5b4d559}">
+      <Declaration><![CDATA[PROPERTY Entity : I_Entity]]></Declaration>
+      <Get Name="Get" Id="{14c13664-5313-4182-b730-759cb62ddf43}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Entity := _ett;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Execute" Id="{a304e578-f69c-4edc-aacc-63226b76bdc5}">
+      <Declaration><![CDATA[(*
+If registered, this method will be executed cyclically.
+*)
+METHOD Execute
+VAR_INPUT
+	nPhase	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.bHmiAcknowledge := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Init" Id="{6ef1b536-d094-4a20-b09d-77b6050a336d}">
+      <Declaration><![CDATA[(*
+If registered, this method will be executed upon startup.
+*)
+METHOD Init
+VAR_INPUT
+	nPhase	: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.smgr.Request(_ctx.stopped);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

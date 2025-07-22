@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateHeld" Id="{622e4363-8c79-454f-850c-072981c3bfe6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateHeld EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_ton: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CanActivate" Id="{38ce3238-167c-4a64-b624-8bc6a40ca916}">
+      <Declaration><![CDATA[(*
+Determines whether the state can be activated.  
+Returns `TRUE` by default but can be overridden for specific activation conditions.
+*)
+METHOD PROTECTED CanActivate : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CanActivate := _ctx.smgr.Current.Tag = _ctx.execute.Tag;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnEntry" Id="{3cfd4b69-5e54-490a-8c5a-7dc6f84946c1}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ton(IN := FALSE);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{594ae345-7c83-4db0-812d-3b911d0cd716}">
+      <Declaration><![CDATA[(*
+Executed during the state's operation.  
+Used to define state-specific logic that runs while the state is active.
+*)
+METHOD PROTECTED OnExecute
+VAR
+	strb: Strb;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ton(IN := TRUE, PT := T#10S);
+IF _ton.Q THEN
+	_ctx.smgr.Request(_ctx.execute);
+END_IF
+
+_ctx.sHmiStatusText :=
+	strb.Set('Held: Smoke break. Remaining time: ')
+		.Append(Strf.SimpleTime(_ton.PT - _ton.ET, 'S', 'M'))
+		.Read();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

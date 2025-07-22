@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateSuspended" Id="{e30e6341-c6bb-48e9-97d2-f8746561be2b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateSuspended EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_bSuspendLock: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CanActivate" Id="{070cfb98-766f-4eb7-bc81-754ff7cee900}">
+      <Declaration><![CDATA[(*
+Determines whether the state can be activated.  
+Returns `TRUE` by default but can be overridden for specific activation conditions.
+*)
+METHOD PROTECTED CanActivate : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CanActivate := _ctx.smgr.Current.Tag = _ctx.execute.Tag;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnEntry" Id="{db54bebc-aa27-4ae2-93ae-230efa966949}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.sHmiStatusText := 'Suspended: I guess we wait... ';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

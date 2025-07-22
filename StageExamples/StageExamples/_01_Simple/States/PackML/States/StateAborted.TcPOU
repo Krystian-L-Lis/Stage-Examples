@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateAborted" Id="{746106d1-75ed-4c27-8afa-f94a3812261d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateAborted EXTENDS _AbstractState
+VAR
+	_bInternalLock: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="OnEntry" Id="{57cd4973-d9f8-4598-9f13-9b3abdf2da09}">
+      <Declaration><![CDATA[(*
+Executed when the state is entered.  
+Provides a hook for defining state-specific behavior to be performed during the transition into this state.
+*)
+METHOD PROTECTED OnEntry
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.sHmiStatusText := 'Aborted: Something bad happened!';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

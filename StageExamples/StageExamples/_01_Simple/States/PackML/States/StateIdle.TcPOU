@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StateIdle" Id="{30a06083-a5c3-4a1b-ad49-0c11cee656ff}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StateIdle EXTENDS _AbstractState
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CanActivate" Id="{4697adfa-3621-4f9f-b945-9cf3d4c379dc}">
+      <Declaration><![CDATA[(*
+Determines whether the state can be activated.  
+Returns `TRUE` by default but can be overridden for specific activation conditions.
+*)
+METHOD PROTECTED CanActivate : BOOL
+VAR
+	cmp: TagCmp;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CanActivate := cmp.Set(_ctx.smgr.Current.Tag)
+					.Match(_ctx.stopped.Tag)
+					.Match(_ctx.complete.Tag)
+					.IsTrue();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnExecute" Id="{dc1fbcb6-78db-482b-a85c-895afb52e14a}">
+      <Declaration><![CDATA[(*
+Executed during the state's operation.  
+Used to define state-specific logic that runs while the state is active.
+*)
+METHOD PROTECTED OnExecute
+VAR
+	strb: Strb;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_ctx.rLevel := _ctx.rLevel + 1;
+IF _ctx.rLevel >= 600 THEN
+	_ctx.smgr.Request(_ctx.execute);
+END_IF
+
+_ctx.sHmiStatusText :=
+	strb.Set('Idle: Level - ')
+		.Append(Strf.Fmt('%.0f', F_LREAL(_ctx.rLevel)))
+		.Read();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
