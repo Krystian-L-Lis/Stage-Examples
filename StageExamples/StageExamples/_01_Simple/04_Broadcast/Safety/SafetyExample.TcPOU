@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="SafetyExample" Id="{94ca555e-c6ae-4bd2-92f7-b0c4c9bdaa0e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM SafetyExample
+VAR
+	stoppable: ARRAY[1..20] OF StoppableEntity;
+	safety: Safety;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

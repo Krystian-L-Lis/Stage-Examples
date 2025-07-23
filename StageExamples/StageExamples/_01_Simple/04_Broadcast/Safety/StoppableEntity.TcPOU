@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StoppableEntity" Id="{a83a5099-ac3d-408e-9581-4d71a7e0c014}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK StoppableEntity IMPLEMENTS I_Callable
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_ett: EntityStart;
+		_onSafetyStop: Receiver(THIS^);
+	_ettEnd: EntityEnd;
+
+	_bSafetyStopLock: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Call" Id="{5e277143-6260-438e-8a8a-6388f95da339}">
+      <Declaration><![CDATA[(*
+This method provides a standardized way for other objects to interact with the object that owns it.
+*)
+METHOD Call
+VAR_INPUT
+	iArg	: StageCore.I_Arg;
+END_VAR
+VAR
+	iSafetyStopState: I_BoolArg;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF IsOk(IArgToIBoolArg(iArg, iSafetyStopState)) THEN
+	_bSafetyStopLock := iSafetyStopState.Get;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

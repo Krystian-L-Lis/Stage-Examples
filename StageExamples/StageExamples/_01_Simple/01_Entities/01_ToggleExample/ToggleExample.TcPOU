@@ -45,8 +45,6 @@ END_VAR
 			END_IF
 			
 			EXIT;
-			
-			
 		END_WHILE
 	END_WHILE
 END_IF]]></ST>

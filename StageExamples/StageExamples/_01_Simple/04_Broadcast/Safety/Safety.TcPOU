@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Safety" Id="{d7d8a648-2a8b-4e3e-ae54-b27aadb17927}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Safety IMPLEMENTS I_Execute, I_Init
+VAR
+	_exe: Execute(THIS^);
+	_init: Init(THIS^);	
+
+	_bSafetyStopState: BOOL;
+	_rtSafetyStop: R_TRIG;
+	_ftSafetyStop: F_TRIG;
+	
+	_ett: EntityStart;
+		_safetyStop: Signal;
+	_ettEnd: EntityEnd;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{219d94b4-f298-481b-a6dd-5a1096aa2d8a}">
+      <Declaration><![CDATA[(*
+If registered, this method will be executed cyclically.
+*)
+METHOD Execute
+VAR_INPUT
+	nPhase	: INT;
+END_VAR
+VAR
+	_safetyStopState: BoolArg(_bSafetyStopState);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_rtSafetyStop(CLk := _bSafetyStopState);
+_ftSafetyStop(CLk := _bSafetyStopState);
+
+IF _rtSafetyStop.Q OR _ftSafetyStop.Q THEN
+	
+	_safetyStop.Emit(_safetyStopState);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Init" Id="{aad0f798-1e32-45e5-942d-4081f1f3400b}">
+      <Declaration><![CDATA[(*
+If registered, this method will be executed upon startup.
+*)
+METHOD Init
+VAR_INPUT
+	nPhase	: INT;
+END_VAR
+VAR
+	iEtt: I_Entity;
+	iRec: I_Receiver;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[WHILE IsOk(GetNextEntity(iEtt)) DO
+	IF IsOk(GetReceiver(iEtt, '*._onSafetyStop.*', iRec)) THEN
+		_safetyStop.Pair(iRec);
+	END_IF
+END_WHILE]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

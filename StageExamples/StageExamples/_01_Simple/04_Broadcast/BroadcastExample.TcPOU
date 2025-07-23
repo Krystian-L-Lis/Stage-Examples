@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="BroadcastExample" Id="{eeeb7f20-33e5-4527-bff4-eb13d57b2084}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM BroadcastExample
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SafetyExample();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

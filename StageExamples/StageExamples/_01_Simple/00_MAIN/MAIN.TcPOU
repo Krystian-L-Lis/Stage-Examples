@@ -10,7 +10,8 @@ END_VAR
 
 EntitiesExample();
 JobsExample();
-StatesExample();]]></ST>
+StatesExample();
+BroadcastExample();]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
