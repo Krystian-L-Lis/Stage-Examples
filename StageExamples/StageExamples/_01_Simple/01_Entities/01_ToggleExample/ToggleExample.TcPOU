@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="ToggleExample" Id="{034a6823-5092-42a9-b96c-30157020fc03}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ToggleExample
+VAR
+	livingroom: Toggle;
+	stairway: ARRAY[1..2] OF Toggle;
+	kitchen: Toggle;
+	bedroom: Toggle;
+	
+	cmd: (_SwitchOn, _SwitchOff, _Toggle) := _Toggle; // What you want to do?
+	sRoomToCmd: Str := '*.bedroom'; // Who is the target?
+	bRun: BOOL; // Rising edge will trigger the state change.
+	
+	iEtt: I_Entity;
+	iComp: I_Component;
+	iToggle: I_Toggle;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bRun THEN
+	bRun := FALSE;
+	
+	WHILE IsOk(GetNextEntity(iEtt)) DO
+		iComp := 0;
+		
+		WHILE IsOk(iEtt.GetNextComp(iComp)) DO
+			IF NOT __QUERYINTERFACE(iComp.Raw, iToggle) THEN
+				CONTINUE;
+			END_IF
+			
+			IF IsOk(MatchPath(iToggle.Tag.Id, sRoomToCmd)) THEN
+				CASE cmd OF
+					_SwitchOn:
+						iToggle.SwitchOn();
+						
+					_SwitchOff:
+						iToggle.SwitchOff();
+						
+					_Toggle:
+						iToggle.Toggle();
+						
+				END_CASE
+			END_IF
+			
+			EXIT;
+			
+			
+		END_WHILE
+	END_WHILE
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

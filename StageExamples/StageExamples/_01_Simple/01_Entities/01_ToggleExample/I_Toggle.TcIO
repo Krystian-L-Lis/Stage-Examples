@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Itf Name="I_Toggle" Id="{1c889e8d-39df-4078-9750-0757aab29d7b}">
+    <Declaration><![CDATA[INTERFACE I_Toggle EXTENDS I_RawComponent
+]]></Declaration>
+    <Property Name="IsOn" Id="{cd69bad8-da81-4d3a-969c-fe4be3ecfb6d}">
+      <Declaration><![CDATA[PROPERTY IsOn : BOOL]]></Declaration>
+      <Get Name="Get" Id="{ef66c7c8-bd99-4a9d-9238-e13d8ed0cedb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="SwitchOff" Id="{9df1d788-b24b-45c5-bc0a-d397a005878b}">
+      <Declaration><![CDATA[METHOD SwitchOff
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="SwitchOn" Id="{5b9fcbe3-e2db-4f56-b465-a7b45d8fafea}">
+      <Declaration><![CDATA[METHOD SwitchOn
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="Tag" Id="{65706d01-ce6a-418d-884f-5549b8fbeab0}">
+      <Declaration><![CDATA[PROPERTY Tag : I_Tag]]></Declaration>
+      <Get Name="Get" Id="{37bcf993-31b7-4001-8433-3cdfc8d815a4}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="Toggle" Id="{bdb0012c-8b89-46c0-a68d-1fdf436fdbfa}">
+      <Declaration><![CDATA[METHOD Toggle
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

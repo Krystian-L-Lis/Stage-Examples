@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="StatesExample" Id="{78e76905-38c3-4db6-8fcd-815a0d681fdb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM StatesExample
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[PackMLExample();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="JobsExample" Id="{5fde126a-5e43-4858-8366-2e235f667e4f}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM JobsExample
+  <POU Name="CountToExample" Id="{5fde126a-5e43-4858-8366-2e235f667e4f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CountToExample
 VAR
 	// An array of jobs to do
 	myWorker: MyWorker;
 	counting: ARRAY[1..10] OF CountToJob := [(CountTo := 200, Worker := myWorker.Base)];
 	i: UDINT;
 	
-	// Write TRUE to start jobs
+	// Rising edge will trigger the state change.
 	bStart: BOOL;
 END_VAR
 ]]></Declaration>

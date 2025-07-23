@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="EntitiesExample" Id="{4b3be423-e5e7-40f1-8b7e-3a07d398763c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM EntitiesExample
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ToggleExample();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

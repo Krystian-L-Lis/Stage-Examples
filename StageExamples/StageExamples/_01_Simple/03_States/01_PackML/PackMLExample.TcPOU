@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <POU Name="StatesExample" Id="{666c2c12-90f3-4c2d-9ee4-20e6b6ddb464}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM StatesExample
+  <POU Name="PackMLExample" Id="{666c2c12-90f3-4c2d-9ee4-20e6b6ddb464}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PackMLExample
 VAR
 	example: ExampleStateMachine;
 	
 	iStateResult: I_State;
 	iSmgr: I_StateManager;
 	bError: BOOL;
-	sStateToRequest: Str := '*.idle';
 	bInit: BOOL := TRUE;
-	bRequest: BOOL;
+	
+	
+	sStateToRequest: Str := '*.idle'; // Use this variable to tell program which state to request
+	bRequest: BOOL; // Rising edge will trigger the state change.
 	
 END_VAR
 ]]></Declaration>

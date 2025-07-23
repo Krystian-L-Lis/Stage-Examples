@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="Toggle" Id="{5b2ad2d0-5ba9-4b0b-92f7-57bc8abe23a7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Toggle IMPLEMENTS I_Toggle
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	_ett: EntityStart;
+		_component: Component(THIS^);
+		_tag: Tag;
+	_ettEnd: EntityEnd;
+	
+	_bValue: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="IsOn" Id="{25abc126-dfb0-4e4e-ae2e-53fc96b45500}">
+      <Declaration><![CDATA[PROPERTY IsOn : BOOL
+]]></Declaration>
+      <Get Name="Get" Id="{2da32b59-9795-477e-a06f-974942a5031e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IsOn := _bValue;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="SwitchOff" Id="{4b025e55-3b74-4a40-b4ae-f89125dbf22b}">
+      <Declaration><![CDATA[METHOD SwitchOff
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_bValue := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SwitchOn" Id="{2b989d0d-0fcd-444a-b99d-f52026e4cb83}">
+      <Declaration><![CDATA[METHOD SwitchOn
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_bValue := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Tag" Id="{c3ebdb19-1735-4d55-883e-e69436a7b641}">
+      <Declaration><![CDATA[PROPERTY Tag : I_Tag]]></Declaration>
+      <Get Name="Get" Id="{7ce2399c-e3d7-497b-a4bd-851028a71476}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Tag := _tag;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Toggle" Id="{ad50040c-3f9a-4fe6-b7dc-d45beee4fd59}">
+      <Declaration><![CDATA[METHOD Toggle
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_bValue := NOT _bValue;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

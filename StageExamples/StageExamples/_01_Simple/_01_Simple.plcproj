@@ -18,63 +18,84 @@
     <LibraryReferences>{465fd801-fcfe-4c0e-8796-d3c36aaafd16}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Jobs\CountToJob.TcPOU">
+    <Compile Include="01_Entities\01_ToggleExample\I_Toggle.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Jobs\JobsExample.TcPOU">
+    <Compile Include="01_Entities\EntitiesExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="01_Entities\01_ToggleExample\Toggle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="01_Entities\01_ToggleExample\ToggleExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="02_Jobs\JobsExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="02_Jobs\01_CountTo\CountToJob.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="02_Jobs\01_CountTo\CountToExample.TcPOU">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="Jobs\MyWorker.TcPOU">
+    <Compile Include="02_Jobs\01_CountTo\MyWorker.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MAIN\MAIN.TcPOU">
+    <Compile Include="00_MAIN\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\StateContext.TcDUT">
+    <Compile Include="03_States\01_PackML\ExampleStateMachine.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateAborted.TcPOU">
+    <Compile Include="03_States\01_PackML\PackMLExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateComplete.TcPOU">
+    <Compile Include="03_States\01_PackML\StateContext.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateExecute.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateAborted.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateHeld.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateComplete.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateIdle.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateExecute.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateStopped.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateHeld.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\StateSuspended.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateIdle.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\PackML\States\_AbstractState.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateStopped.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\ExampleStateMachine.TcPOU">
+    <Compile Include="03_States\01_PackML\States\StateSuspended.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="States\StatesExample.TcPOU">
+    <Compile Include="03_States\01_PackML\States\_AbstractState.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="03_States\StatesExample.TcPOU">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MAIN" />
-    <Folder Include="Jobs" />
-    <Folder Include="States" />
-    <Folder Include="States\PackML" />
-    <Folder Include="States\PackML\States" />
-    <Folder Include="States\PackML\States\Aborted" />
+    <Folder Include="01_Entities\01_ToggleExample" />
+    <Folder Include="02_Jobs\01_CountTo" />
+    <Folder Include="00_MAIN" />
+    <Folder Include="02_Jobs" />
+    <Folder Include="01_Entities" />
+    <Folder Include="03_States" />
+    <Folder Include="03_States\01_PackML" />
+    <Folder Include="03_States\01_PackML\States" />
+    <Folder Include="03_States\01_PackML\States\Aborted" />
   </ItemGroup>
   <ItemGroup>
     <PlaceholderReference Include="Tc2_Standard">
