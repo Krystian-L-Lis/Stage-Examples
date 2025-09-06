@@ -13,7 +13,7 @@
 // At the end the entity range should be number of compoennets plus header.
 FUNCTION_BLOCK Test_Broadcast_FillAndCoalesce IMPLEMENTS I_Execute
 VAR_INPUT
-	bTest		: BOOL := TRUE;
+	bTest: BOOL := TRUE;
 END_VAR
 VAR_OUTPUT
 (*
@@ -41,18 +41,18 @@ VAR_OUTPUT
 *)
 END_VAR
 VAR
-	exe					: Execute(THIS^);	
-	call				: TestCall;
+	exe: Execute(THIS^);	
+	call: TestCall;
 
-	ett					: EntityStart;
-		signal				: ARRAY[1..3] OF Signal; // 3 headers
-		dfgSignal			: Signal;
+	ett: EntityStart;
+		signal: ARRAY[1..3] OF Signal; // 3 headers
+		dfgSignal: Signal;
 		
-		batch01				: ARRAY[1..3, 1..2] OF Receiver(call); // 6 entries
-		batch02				: ARRAY[1..3, 1..2] OF Receiver(call);	// another 6 entries
-		dfgBatch			: ARRAY[1..4] OF Receiver(call);
-	end					: EntityEnd;
-	i, j				: UDINT;
+		batch01: ARRAY[1..3, 1..2] OF Receiver := [3((Callable := call)), 2((Callable := call))]; // 6 entries
+		batch02: ARRAY[1..3, 1..2] OF Receiver := [3((Callable := call)), 2((Callable := call))];	// another 6 entries
+		dfgBatch: ARRAY[1..4] OF Receiver := [4((Callable := call))];
+	end: EntityEnd;
+	i, j: UDINT;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[]]></ST>

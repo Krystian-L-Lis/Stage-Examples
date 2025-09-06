@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.16">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4026.18">
 	<Project ProjectGUID="{BF7EADF8-1AC4-4F5B-A938-FC7E60942C47}" Target64Bit="true" ShowHideConfigurations="#x6">
 		<System>
 			<Tasks>
@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{E9EBC692-3FE3-47E2-B584-E70E92448500}" Name="_01_Simple" PrjFilePath="_01_Simple\_01_Simple.plcproj" TmcFilePath="_01_Simple\_01_Simple.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{7EFD6B27-58CA-1B2E-247C-C57661260333}" TmcPath="_01_Simple\_01_Simple.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{10AA6B94-117B-4CF4-4406-F0A5F7F95E8C}" TmcPath="_01_Simple\_01_Simple.tmc">
 					<Name>_01_Simple Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
@@ -33,7 +33,7 @@
 				</Instance>
 			</Project>
 			<Project GUID="{74BF5D14-1778-426C-A55F-C5B3D04636DB}" Name="_02_Tests" PrjFilePath="_02_Tests\_02_Tests.plcproj" TmcFilePath="_02_Tests\_02_Tests.tmc" ReloadTmc="true" AmsPort="852" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{FB3E2623-68CC-E97E-3CDE-E95B69A2E411}" TmcPath="_02_Tests\_02_Tests.tmc">
+				<Instance Id="#x08502040" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{9519CADA-3958-D9BE-2FAE-694AA9F7ACA4}" TmcPath="_02_Tests\_02_Tests.tmc">
 					<Name>_02_Tests Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

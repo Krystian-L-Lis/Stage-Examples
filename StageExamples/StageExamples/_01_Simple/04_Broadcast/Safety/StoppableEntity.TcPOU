@@ -8,7 +8,7 @@ VAR_OUTPUT
 END_VAR
 VAR
 	_ett: EntityStart;
-		_onSafetyStop: Receiver(THIS^);
+		_onSafetyStop: Receiver := (Callable := THIS^);
 	_ettEnd: EntityEnd;
 
 	_bSafetyStopLock: BOOL;
